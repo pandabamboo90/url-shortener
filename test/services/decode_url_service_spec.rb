@@ -5,16 +5,16 @@ class DecodeUrlServiceTest < ActiveSupport::TestCase
     @link = links(:one)
   end
 
-  test "SHOULD raise exception if slug is not found" do
-    service = DecodeUrlService.new(slug: 'invalid_slug')
+  test "SHOULD raise exception if encoded_url is not found" do
+    service = DecodeUrlService.new(encoded_url: 'invalid_encoded_url')
 
     assert_raises(ActiveRecord::RecordNotFound) do
       service.call
     end
   end
 
-  test "SHOULD return a url if slug is existed in DB" do
-    service = DecodeUrlService.new(slug: @link.slug)
+  test "SHOULD return a url if encoded_url is existed in DB" do
+    service = DecodeUrlService.new(encoded_url: @link.encoded_url)
 
     assert_nothing_raised do
       @url = service.call

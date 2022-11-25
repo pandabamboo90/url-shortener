@@ -5,11 +5,11 @@ class EncodeUrlServiceTest < ActiveSupport::TestCase
     @link = links(:one)
   end
 
-  test "SHOULD return the slug if the URL already encoded once" do
+  test "SHOULD return the encoded_url if the URL already encoded once" do
     service = EncodeUrlService.new(url: @link.url)
-    @slug = service.call
+    @encoded_url = service.call
 
-    assert_equal(@slug, @link.slug)
+    assert_equal(@encoded_url, @link.encoded_url)
   end
 
   test "SHOULD raise exception if URL is invalid" do
@@ -20,16 +20,16 @@ class EncodeUrlServiceTest < ActiveSupport::TestCase
     end
   end
 
-  test "SHOULD encode the URL and return a new slug" do
+  test "SHOULD encode the URL and return a new encoded_url" do
     @url = 'http://valid_url'
     service = EncodeUrlService.new(url: @url)
 
     assert_nothing_raised do
-      @slug = service.call
+      @encoded_url = service.call
     end
 
     assert_equal(Link.all.size, 3)
-    assert_equal(Link.last.slug, @slug)
+    assert_equal(Link.last.encoded_url, @encoded_url)
     assert_equal(Link.last.url, @url)
   end
 end

@@ -2,8 +2,8 @@
 
 one:
   url: http://valid_url_1.com
-  slug: slug_1
+  encoded_url: encoded_url_1
 
 two:
   url: https://valid_url_2.com
-  slug: slug_2
+  encoded_url: encoded_url_2

@@ -13,11 +13,11 @@
 ActiveRecord::Schema.define(version: 2022_11_24_154829) do
 
   create_table "links", force: :cascade do |t|
-    t.string "url", null: false
-    t.string "slug", null: false
+    t.text "url", null: false
+    t.string "encoded_url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["slug"], name: "index_links_on_slug"
+    t.index ["encoded_url"], name: "index_links_on_encoded_url"
   end
 
 end

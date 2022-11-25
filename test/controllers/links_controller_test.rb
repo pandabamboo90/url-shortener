@@ -11,7 +11,7 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should response decoded URL" do
-    post decode_url, params: { slug: @link.slug }, as: :json
+    post decode_url, params: { encoded_url: @link.encoded_url }, as: :json
     assert_response :success
   end
 end

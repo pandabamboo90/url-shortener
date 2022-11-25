@@ -1,18 +1,18 @@
 class LinksController < ApplicationController
   # POST /encode
   def encode
-    slug = ::EncodeUrlService.new(url: params[:url])
+    encoded_url = ::EncodeUrlService.new(url: params[:url])
                            .call
 
     render json: {
       message: "URL encoded successfully",
-      shorten_url: slug
+      encoded_url: encoded_url
     }
   end
 
   # POST /decode
   def decode
-    url = ::DecodeUrlService.new(slug: params[:slug])
+    url = ::DecodeUrlService.new(encoded_url: params[:encoded_url])
                            .call
 
     render json: {
@@ -30,6 +30,6 @@ class LinksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def link_params
-      params.permit(:url, :slug)
+      params.permit(:url, :encoded_url)
     end
 end

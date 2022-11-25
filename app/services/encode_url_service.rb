@@ -4,18 +4,16 @@ class EncodeUrlService
   end
 
   def call
-    slug = ''
-
     link = Link.find_by(url: @url)
 
     if link.present?
-      slug = link.slug
+      encoded_url = link.encoded_url
     else
-      slug = SecureRandom.uuid[0..5]
-      Link.create!(url: @url, slug: slug)
+      encoded_url = SecureRandom.uuid[0..5]
+      Link.create!(url: @url, encoded_url: encoded_url)
     end
 
-    # Return the slug
-    slug
+    # Return the encoded_url
+    encoded_url
   end
 end
