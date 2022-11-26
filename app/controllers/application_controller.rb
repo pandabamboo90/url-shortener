@@ -27,7 +27,7 @@ class ApplicationController < ActionController::API
           title: title,
           detail: detail
         }
-      ], status: status
-    }
+      ]
+    }, status: status
   end
 end
